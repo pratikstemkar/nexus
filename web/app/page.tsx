@@ -74,7 +74,7 @@ export default function Home() {
                 <div className="flex justify-center mt-3 p-5">
                     <input
                         type="text"
-                        className="border border-grey p-2 rounded-md focus:outline-none focus:border-blue"
+                        className="border border-grey p-2 text-black rounded-md focus:outline-none focus:border-blue"
                         placeholder="room name"
                         value={roomName}
                         onChange={e => setRoomName(e.target.value)}
@@ -92,7 +92,7 @@ export default function Home() {
                         {rooms.map((room, index) => (
                             <div
                                 key={index}
-                                className="border border-blue p-4 flex items-center rounded-md w-full"
+                                className="border border-blue-500 p-4 flex items-center rounded-lg w-full hover:bg-slate-900"
                             >
                                 <div className="w-full">
                                     <div className="text-sm">room</div>
@@ -102,7 +102,7 @@ export default function Home() {
                                 </div>
                                 <div className="">
                                     <button
-                                        className="px-4 text-white bg-blue rounded-md"
+                                        className="px-4 text-white bg-blue-500 active:bg-blue-700 rounded-md py-1.5"
                                         onClick={() => joinRoom(room.id)}
                                     >
                                         join

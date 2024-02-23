@@ -52,14 +52,14 @@ const LoginPage = () => {
                 </div>
                 <input
                     placeholder="email"
-                    className="p-3 mt-8 rounded-md border-2 border-grey focus:outline-none focus:border-blue"
+                    className="p-3 mt-8 rounded-md border-2 border-grey focus:outline-none focus:border-blue text-black"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                 />
                 <input
                     type="password"
                     placeholder="password"
-                    className="p-3 mt-4 rounded-md border-2 border-grey focus:outline-none focus:border-blue"
+                    className="p-3 mt-4 rounded-md border-2 border-grey focus:outline-none focus:border-blue text-black"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                 />
