@@ -27,6 +27,8 @@ func InitRouter(userHandler *user.Handler, wsHandler *websocket.Handler) {
 		MaxAge: 12 * time.Hour,
 	}))
 
+	// r.Use(cors.Default())
+
 	r.POST("/signup", userHandler.CreateUser)
 	r.POST("/login", userHandler.Login)
 	r.GET("/logout", userHandler.Logout)

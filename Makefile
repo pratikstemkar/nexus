@@ -1,19 +1,19 @@
 postgresinit:
-	docker run --name postgres15 -p 5433:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=password -d postgres:15-alpine
+	docker run --name nexus-postgres -p 5433:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=password -d postgres
 
 postgres:
-	docker exec -it postgres15 psql
+	docker exec -it nexus-postgres psql
 
 createdb:
-	docker exec -it postgres15 createdb --username=root --owner=root go-chat
+	docker exec -it nexus-postgres createdb --username=root --owner=root nexusdb
 
 dropdb:
-	docker exec -it postgres15 dropdb go-chat
+	docker exec -it nexus-postgres dropdb nexusdb
 
 migrateup:
-	migrate -path db/migrations -database "postgresql://root:password@localhost:5433/go-chat?sslmode=disable" -verbose up
+	migrate -path internal/database/migrations -database "postgresql://root:password@localhost:5433/nexusdb?sslmode=disable" -verbose up
 
 migratedown:
-	migrate -path db/migrations -database "postgresql://root:password@localhost:5433/go-chat?sslmode=disable" -verbose down
+	migrate -path internal/database/migrations -database "postgresql://root:password@localhost:5433/nexusdb?sslmode=disable" -verbose down
 
 .PHONY: postgresinit postgres createdb dropdb migrateup migratedown

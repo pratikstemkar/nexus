@@ -2,16 +2,14 @@ package user
 
 import (
 	"context"
+	"os"
 	"strconv"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
+	_ "github.com/joho/godotenv/autoload"
 
 	"github.com/pratikstemkar/nexus/internal/util"
-)
-
-const (
-	secretKey = "secret"
 )
 
 type service struct {
@@ -84,7 +82,7 @@ func (s *service) Login(c context.Context, req *LoginUserReq) (*LoginUserRes, er
 		},
 	})
 
-	ss, err := token.SignedString([]byte(secretKey))
+	ss, err := token.SignedString([]byte(os.Getenv("JWT_SECRET")))
 	if err != nil {
 		return &LoginUserRes{}, err
 	}
