@@ -25,7 +25,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <AuthContextProvider>
                     <WebSocketProvider>
-                        {/* <Navbar /> */}
+                        <Navbar />
                         {children}
                     </WebSocketProvider>
                 </AuthContextProvider>

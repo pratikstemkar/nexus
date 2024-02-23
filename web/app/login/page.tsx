@@ -4,11 +4,14 @@ import { AuthContext, UserInfo } from "@/utils/AuthProvider";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { API_URL } from "@/constants";
+import Link from "next/link";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const { authenticated } = useContext(AuthContext);
+    const { setUser, setAuthenticated } = useContext(AuthContext);
 
     const router = useRouter();
 
@@ -37,15 +40,26 @@ const LoginPage = () => {
                 };
 
                 localStorage.setItem("user_info", JSON.stringify(user));
+                if (user) {
+                    setUser({
+                        username: user.username,
+                        id: user.id,
+                    });
+                }
+                setAuthenticated(true);
                 return router.push("/");
+            } else {
+                console.log(data);
+                setError("Login Failed!");
             }
         } catch (err) {
             console.log(err);
+            setError("Server Error!");
         }
     };
 
     return (
-        <div className="flex items-center justify-center min-w-full min-h-screen">
+        <div className="flex flex-col items-center justify-center lg:mt-40 mt-20">
             <form className="flex flex-col md:w-1/5">
                 <div className="text-3xl font-bold text-center">
                     <span className="text-blue-500">welcome to nexus!</span>
@@ -63,14 +77,26 @@ const LoginPage = () => {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                 />
+                {error !== "" ? (
+                    <span className="mt-6 bg-red-500 bg-opacity-30 text-sm px-4 py-2 rounded-md text-red-500">
+                        {error}
+                    </span>
+                ) : null}
                 <button
-                    className="p-3 mt-6 rounded-md bg-blue-500 active:bg-blue-700 font-bold text-white"
+                    className="p-3 mt-4 rounded-md bg-blue-500 active:bg-blue-700 font-bold text-white"
                     type="submit"
                     onClick={submitHandler}
                 >
                     login
                 </button>
             </form>
+
+            <Link
+                href="/signup"
+                className="text-blue-500 mt-5 font-medium hover:underline underline-offset-4"
+            >
+                create your account
+            </Link>
         </div>
     );
 };
