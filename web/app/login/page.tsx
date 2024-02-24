@@ -60,7 +60,7 @@ const LoginPage = () => {
 
     return (
         <div className="flex flex-col items-center justify-center lg:mt-40 mt-20">
-            <form className="flex flex-col md:w-1/5">
+            <form className="flex flex-col w-1/3 lg:w-1/5">
                 <div className="text-3xl font-bold text-center">
                     <span className="text-blue-500">welcome to nexus!</span>
                 </div>

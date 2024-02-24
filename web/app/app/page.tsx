@@ -4,7 +4,7 @@ import { API_URL } from "@/constants";
 import { AuthContext } from "@/utils/AuthProvider";
 import { WebsocketContext } from "@/utils/WebsocketProvider";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import autosize from "autosize";
 import ChatBody from "./ChatBody";
 
@@ -95,6 +95,12 @@ const AppPage = () => {
         textarea.current.value = "";
     };
 
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key == "enter") {
+            sendMessage();
+        }
+    };
+
     return (
         <>
             <div className="flex flex-col w-full">
@@ -109,6 +115,7 @@ const AppPage = () => {
                                 placeholder="type your message here"
                                 className="w-full h-10 p-2 text-black rounded-md focus:outline-none"
                                 style={{ resize: "none" }}
+                                onKeyPress={e => handleKeyPress(e)}
                             />
                         </div>
                         <div className="flex items-center">
