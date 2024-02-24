@@ -1,6 +1,7 @@
 # Nexus - Real-Time Chat
 
 Chat with anyone in a room.
+https://github.com/pratikstemkar/nexus/assets/42164732/a40f2fa0-c55f-4156-b168-d7b802d552a3
 
 ## Tech
 
@@ -19,4 +20,4 @@ Chat with anyone in a room.
 -   Run DB migrations to create `users` table using `make migrateup`.
 -   Start server command `go run cmd/main.go`.
 -   Run Next.js app using `npm run dev`.
--   Visit `https://localhost:3000`.
+-   Visit `http://localhost:3000`.
